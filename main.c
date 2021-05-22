@@ -34,33 +34,33 @@ void Usage(void)
  */
 void ReverseWords(char *text, const size_t length)
 {
-    ReverseString(text, 0, length);
+    ReverseString(text, 0, length - 1);
     
     int wordstart = 0;
     int wordend = 0;
     while (wordend < length)
     {
-        while(text[wordend++] != ' ' && wordend <= length);
-        wordend -= 1;
+        while(text[++wordend] != ' ' && wordend < length); // This is going to go one byte past the end
+        wordend -= 1; // the previous byte is the actual end position
         ReverseString(text, wordstart, wordend);
-        wordstart = wordend;
-        while (wordstart++ == ' ' && wordstart < length); // skip until the first character of the next word is found
+        wordstart = wordend + 1; //start search for next word at end of this word
+        while (text[++wordstart] == ' ' && wordstart < length); // skip to next character or end of string
         wordend = wordstart; //start of next word
     } 
 }
 
 /** \brief reverse a section of string
  *  \param text contains the string to be reversed
- *  \param start the beginning of that area to be reversed
- *  \param end the end of the area to be reversed
+ *  \param first the first position of the area to be reversed
+ *  \param last the last position of the area to be reversed
  */
-void ReverseString(char *text, int start, int end)
+void ReverseString(char *text, int first, int last)
 {
-    int halfway = (end-start)/2;
-    for(int index = 0; index < halfway; index++)
+    int halfway = (last-first+1)/2;
+    for(int index = 0; index < halfway; index++, first++, last--)
     {
-        char temp = text[start + index];
-        text[start + index] = text[end - index - 1];
-        text[end - index - 1] = temp;
+        char temp = text[first];
+        text[first] = text[last];
+        text[last] = temp;
     }	
 }
