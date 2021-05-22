@@ -9,23 +9,23 @@ void Usage();
 int main(int argc, char * argv[])
 {
     char *test_string = argv[1];
-	if (argc < 2)
-	{
-		Usage();
-	}
+    if (argc < 2)
+    {
+        Usage();
+    }
 
-	printf("Test String: %s\n", test_string);
-	ReverseWords(test_string, strlen(test_string));
-	printf("Reversed: %s\n", test_string);
+    printf("Test String: %s\n", test_string);
+    ReverseWords(test_string, strlen(test_string));
+    printf("Reversed: %s\n", test_string);
 }
 
 /** \brief Display usage on the command line
  */
 void Usage(void) 
 {
-	printf("Reverse the words in a string\n");
-	printf("reverse \"The quick brown fox jumped over the lazy dog\"\n");
-	exit(0);
+    printf("Reverse the words in a string\n");
+    printf("reverse \"The quick brown fox jumped over the lazy dog\"\n");
+    exit(0);
 }
 
 /** \brief reverse words in a string
@@ -34,19 +34,19 @@ void Usage(void)
  */
 void ReverseWords(char *text, const size_t length)
 {
-	ReverseString(text, 0, length);
-	
-	int wordstart = 0;
-	int wordend = 0;
-	while (wordend < length)
-	{
-		while(text[wordend++] != ' ' && wordend <= length);
-		wordend -= 1;
-	    ReverseString(text, wordstart, wordend);
-		wordstart = wordend;
-		while (wordstart++ == ' ' && wordstart < length); // skip until the first character of the next word is found
-		wordend = wordstart; //start of next word
-	} 
+    ReverseString(text, 0, length);
+    
+    int wordstart = 0;
+    int wordend = 0;
+    while (wordend < length)
+    {
+        while(text[wordend++] != ' ' && wordend <= length);
+        wordend -= 1;
+        ReverseString(text, wordstart, wordend);
+        wordstart = wordend;
+        while (wordstart++ == ' ' && wordstart < length); // skip until the first character of the next word is found
+        wordend = wordstart; //start of next word
+    } 
 }
 
 /** \brief reverse a section of string
@@ -56,11 +56,11 @@ void ReverseWords(char *text, const size_t length)
  */
 void ReverseString(char *text, int start, int end)
 {
-	int halfway = (end-start)/2;
-	for(int index = 0; index < halfway; index++)
-	{
-		char temp = text[start + index];
-		text[start + index] = text[end - index - 1];
-		text[end - index - 1] = temp;
-	}	
+    int halfway = (end-start)/2;
+    for(int index = 0; index < halfway; index++)
+    {
+        char temp = text[start + index];
+        text[start + index] = text[end - index - 1];
+        text[end - index - 1] = temp;
+    }	
 }
