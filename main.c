@@ -16,7 +16,7 @@ int main(int argc, char * argv[])
 
     printf("Test String: %s\n", test_string);
     ReverseWords(test_string, strlen(test_string));
-    printf("Reversed: %s\n", test_string);
+    printf("   Reversed: %s\n", test_string);
 }
 
 /** \brief Display usage on the command line
