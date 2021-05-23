@@ -57,7 +57,7 @@ void ReverseWords(char *text, const size_t length)
 void ReverseString(char *text, int first, int last)
 {
     int halfway = (last-first+1)/2;
-    char *begin_ptr = text;
+    char *begin_ptr = text + first;
     char *end_ptr = begin_ptr + last;
     for(int index = 0; index < halfway; index++, begin_ptr++, end_ptr--)
     {
