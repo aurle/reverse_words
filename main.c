@@ -58,7 +58,7 @@ void ReverseString(char *text, int first, int last)
 {
     int halfway = (last-first+1)/2;
     char *begin_ptr = text + first;
-    char *end_ptr = begin_ptr + last;
+    char *end_ptr = text + last;
     for(int index = 0; index < halfway; index++, begin_ptr++, end_ptr--)
     {
         char *temp = begin_ptr;
